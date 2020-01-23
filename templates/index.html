@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Translator</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+</head>
+<body>
+    <div class="container-fluid">
+      <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <a class="navbar-brand" href="#">Translator</a>
+      </nav>
+    </div>
+
+    <div class="container">
+    <br>
+      <form method="post">
+          {% csrf_token %}
+          <div class="form-group">
+            <label for="exampleInputEmail1">English to Bangla:</label>
+            <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter something.." name="value">
+            <small id="emailHelp" class="form-text text-muted">Use English only.</small>
+          </div>
+          <select class="custom-select" name="lang">
+              <option value="af">afrikaans</option>
+            <option value="sq">albanian</option>
+            <option value="am">amharic</option>
+            <option value="ar">arabic</option>
+            <option value="hy">armenian</option>
+            <option value="az">azerbaijani</option>
+            <option value="eu">basque</option>
+            <option value="be">belarusian</option>
+            <option selected value="bn">bengali</option>
+            <option value="bs">bosnian</option>
+            <option value="bg">bulgarian</option>
+            <option value="ca">catalan</option>
+            <option value="ceb">cebuano</option>
+            <option value="ny">chichewa</option>
+            <option value="zh-cn">chinese (simplified)</option>
+            <option value="zh-tw">chinese (traditional)</option>
+            <option value="co">corsican</option>
+            <option value="hr">croatian</option>
+            <option value="cs">czech</option>
+            <option value="da">danish</option>
+            <option value="nl">dutch</option>
+            <option value="en">english</option>
+            <option value="eo">esperanto</option>
+            <option value="et">estonian</option>
+            <option value="tl">filipino</option>
+            <option value="fi">finnish</option>
+            <option value="fr">french</option>
+            <option value="fy">frisian</option>
+            <option value="gl">galician</option>
+            <option value="ka">georgian</option>
+            <option value="de">german</option>
+            <option value="el">greek</option>
+            <option value="gu">gujarati</option>
+            <option value="ht">haitian creole</option>
+            <option value="ha">hausa</option>
+            <option value="haw">hawaiian</option>
+            <option value="iw">hebrew</option>
+            <option value="hi">hindi</option>
+            <option value="hmn">hmong</option>
+            <option value="hu">hungarian</option>
+            <option value="is">icelandic</option>
+            <option value="ig">igbo</option>
+            <option value="id">indonesian</option>
+            <option value="ga">irish</option>
+            <option value="it">italian</option>
+            <option value="ja">japanese</option>
+            <option value="jw">javanese</option>
+            <option value="kn">kannada</option>
+            <option value="kk">kazakh</option>
+            <option value="km">khmer</option>
+            <option value="ko">korean</option>
+            <option value="ku">kurdish (kurmanji)</option>
+            <option value="ky">kyrgyz</option>
+            <option value="lo">lao</option>
+            <option value="la">latin</option>
+            <option value="lv">latvian</option>
+            <option value="lt">lithuanian</option>
+            <option value="lb">luxembourgish</option>
+            <option value="mk">macedonian</option>
+            <option value="mg">malagasy</option>
+            <option value="ms">malay</option>
+            <option value="ml">malayalam</option>
+            <option value="mt">maltese</option>
+            <option value="mi">maori</option>
+            <option value="mr">marathi</option>
+            <option value="mn">mongolian</option>
+            <option value="my">myanmar (burmese)</option>
+            <option value="ne">nepali</option>
+            <option value="no">norwegian</option>
+            <option value="ps">pashto</option>
+            <option value="fa">persian</option>
+            <option value="pl">polish</option>
+            <option value="pt">portuguese</option>
+            <option value="pa">punjabi</option>
+            <option value="ro">romanian</option>
+            <option value="ru">russian</option>
+            <option value="sm">samoan</option>
+            <option value="gd">scots gaelic</option>
+            <option value="sr">serbian</option>
+            <option value="st">sesotho</option>
+            <option value="sn">shona</option>
+            <option value="sd">sindhi</option>
+            <option value="si">sinhala</option>
+            <option value="sk">slovak</option>
+            <option value="sl">slovenian</option>
+            <option value="so">somali</option>
+            <option value="es">spanish</option>
+            <option value="su">sundanese</option>
+            <option value="sw">swahili</option>
+            <option value="sv">swedish</option>
+            <option value="tg">tajik</option>
+            <option value="ta">tamil</option>
+            <option value="te">telugu</option>
+            <option value="th">thai</option>
+            <option value="tr">turkish</option>
+            <option value="uk">ukrainian</option>
+            <option value="ur">urdu</option>
+            <option value="uz">uzbek</option>
+            <option value="vi">vietnamese</option>
+            <option value="cy">welsh</option>
+            <option value="xh">xhosa</option>
+            <option value="yi">yiddish</option>
+            <option value="yo">yoruba</option>
+            <option value="zu">zulu</option>
+            <option value="fil">Filipino</option>
+            <option value="he">Hebrew</option>
+          </select>
+          <p></p>
+          <button type="submit" class="btn btn-primary">Translate</button>
+      </form>
+    <br>
+        {% if data %}
+           <div class="text-nowrap" style="width: 8rem;">
+              {{ data }}
+            </div>
+        {% endif %}
+
+        {% if translation.synonyms is not None%}
+           <div class="text-nowrap" style="width: 8rem;">
+              {{ translation.synonyms }}
+            </div>
+        {% endif %}
+
+
+    </div>
+
+</body>
+<footer>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</footer>
+</html>
